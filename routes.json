@@ -1,3 +1,4 @@
 {
-	"/stocks/:symbol": "/stocks?symbol=:symbol"
+	"/stocks/:symbol": "/stocks?symbol=:symbol",
+  "/news/:tickers": "/news?tickers=:tickers"
 }

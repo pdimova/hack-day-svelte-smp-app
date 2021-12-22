@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script context="module">
 	import { getStockNews, getTrendingStock } from './api';
 	import StockNews from '../../lib/stock-news/StockNews.svelte';
 
@@ -18,10 +18,21 @@
 
 <script>
 	export let stockList, news;
-	console.log('stocks/index', news[0]);
+	
+  const getClass = (stock) => {
+    const priceStatus = stock.regularMarketChange < 0 ? 'negative' : 'positive';
+    return `stock-item ${priceStatus}`
+  }
 </script>
 
 <div>
+  <div style={'display: flex'}>
+    <span class="stock-item">Symbol</span>
+    <span class="stock-item">Name</span>
+    <span class="stock-item">Price</span>
+    <span class="stock-item">Change</span>
+    <span class="stock-item">Change in %</span>
+ </div>
 	{#each stockList as stock (stock.symbol)}
 		<div class="stock">
 			<h4 class="stock-item">
@@ -29,14 +40,14 @@
 			</h4>
 			<p class="stock-item">{stock.displayName ? stock.displayName : stock.longName}</p>
 			<p class="stock-item">{stock.regularMarketPrice.toFixed(2)}</p>
-			<p class="stock-item">{stock.regularMarketChange.toFixed(2)}</p>
-			<p class="stock-item">{stock.regularMarketChangePercent.toFixed(2)}</p>
+			<p class={getClass(stock)}>{stock.regularMarketChange.toFixed(2)}</p>
+			<p class={getClass(stock)}>{stock.regularMarketChangePercent.toFixed(2)}%</p>
 		</div>
 	{/each}
 </div>
 
 <div>
-	<StockNews data={news} />
+	<StockNews news={news} />
 </div>
 
 <style>
@@ -47,6 +58,14 @@
 	* :global(.stock-item) {
 		flex: 1;
 	}
+
+  * :global(.positive) {
+    color:  #00873c;
+  }
+
+  * :global(.negative) {
+    color: #eb0f29;
+  }
 	* :global(.myClass) {
 		font-style: italic;
 	}

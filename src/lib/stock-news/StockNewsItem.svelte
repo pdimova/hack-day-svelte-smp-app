@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script>
 	import Card, {
 		Content,
 		PrimaryAction,
@@ -13,24 +13,35 @@
 	import Chip, { Set, Text } from '@smui/chips';
 
 	export let title;
-	export let text = '';
-	export let source_name = '';
-	export let date = '';
-	export let sentiment = '';
+	export let text;
+	export let source_name;
+	export let date;
+	export let sentiment;
+  export let image_url;
+  export let news_url;
+  export let tickers;
+  
+  const truncate = (input, target) => input.length > target ? `${input.substring(0, target)}...` : input;
 </script>
 
 <div class="card-display">
 	<div class="card-container">
 		<Card class="msa-card">
 			<!-- <PrimaryAction> -->
-			<Media class="card-media-16x9 msa-card-media" aspectRatio="16x9" />
+			<Media class="card-media-16x9 msa-card-media" aspectRatio="16x9" >
+        <MediaContent>
+          <img src={image_url} alt="" />
+        </MediaContent>
+      </Media>
 			<div class="msc-card-content-and-action">
 				<Content class="mdc-typography--body2">
-					<h2 class="mdc-typography--headline6" style="margin: 0;">{title}</h2>
-					{text}
+					<h3 class="mdc-typography--headline6" style="margin: 0;">
+            <a href={news_url} target="_blank">({tickers[0]}) {truncate(title, 100)}</a>
+          </h3>
+					{truncate(text, 255)}
 				</Content>
 				<Actions class="msa-card-actions">
-					<Set chips={['NKE']} let:chip nonInteractive>
+					<Set chips={[tickers[0]]} let:chip nonInteractive>
 						<Chip {chip}>
 							<Text>{chip}</Text>
 						</Chip>
@@ -61,17 +72,14 @@
 </div>
 
 <style>
-	* :global(.card-media-16x9) {
-		background-image: url(https://place-hold.it/320x180?text=16x9&fontsize=23);
-	}
-
 	:global(.msa-card) {
+    max-height: 185px;
 		display: flex;
 		flex-direction: row;
+    margin-bottom: 10px;
 	}
 
 	:global(.msa-card-media) {
-		border: 1px solid red;
 		flex: 1;
 	}
 
@@ -81,6 +89,11 @@
 
 	:global(.msa-card-actions) {
 		/* flex-direction: column; */
-		align-items: unset;
+		align-items: center;
 	}
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
 </style>

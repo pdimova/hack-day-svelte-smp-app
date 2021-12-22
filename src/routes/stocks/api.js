@@ -21,3 +21,7 @@ export const getStockNews = () => {
 export const getStock = (stockSymbol) => {
 	return fetchAPI(`/stocks/${stockSymbol}`);
 };
+
+export const getNews = (stockSymbol) => {
+	return fetchAPI(`/news/${stockSymbol}`);
+};
