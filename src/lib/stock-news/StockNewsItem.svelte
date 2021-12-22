@@ -12,7 +12,7 @@
 	import IconButton, { Icon } from '@smui/icon-button';
 	import Chip, { Set, Text } from '@smui/chips';
 
-	export let title = '';
+	export let title;
 	export let text = '';
 	export let source_name = '';
 	export let date = '';
@@ -35,9 +35,7 @@
 							<Text>{chip}</Text>
 						</Chip>
 					</Set>|
-					<Text>{source_name}</Text> | <Text>{date}</Text> | <Text
-						>{sentiment}</Text
-					>
+					<Text>{source_name}</Text> | <Text>{date}</Text> | <Text>{sentiment}</Text>
 					<!-- <ActionButtons>
 					  <Button>
 						<Label>Action</Label>

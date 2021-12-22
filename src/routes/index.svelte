@@ -27,8 +27,7 @@
 	<Label>Raised</Label>
 </Button>
 
-<StockNews/>
-
+GOTO http://localhost:3000/stocks
 
 <!--
   You need to import `@material/typography/mdc-typography` in SCSS for

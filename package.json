@@ -9,7 +9,7 @@
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
 		"prepare": "npm run smui-theme",
-    "db": "json-server --watch db.json --port 3004 --routes routes.json",
+		"db": "json-server --watch db.json --port 3004 --routes routes.json",
 		"smui-theme": "smui-theme compile static/smui.css -i src/theme"
 	},
 	"devDependencies": {
